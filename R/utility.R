@@ -14,7 +14,6 @@ graph_to_nodelist <- function(g) {
     tibble::as_tibble(df0)
 }
 
-
 #' Extract edge list of a graph object.
 #'
 #' @param g an igraph graph object.
@@ -28,4 +27,31 @@ graph_to_nodelist <- function(g) {
 graph_to_edgelist <- function(g) {
     df0 <- igraph::as_data_frame(g)
     tibble::as_tibble(df0)
+}
+
+#' From NULL to character NA
+#'
+#' @param x vector of characters
+#' @export
+null_to_character_na <- function(x) {
+    if (is.null(x)) as.character(NA) else x
+}
+
+#' From NULL to integer NA
+#'
+#' @param x vector of integers
+#' @export
+null_to_integer_na <- function(x) {
+    if (is.null(x)) as.integer(NA) else x
+}
+
+#' Extract id of a group
+#'
+#' @param i integer index representing the group
+#' @param df.com output of detect_arrange
+#' @importFrom dplyr filter
+#' @importFrom rlang .data
+#' @export
+names_in_group <- function(i, df.com) {
+    dplyr::filter(df.com, .data$group == i)$id
 }
