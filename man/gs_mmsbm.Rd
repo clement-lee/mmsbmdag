@@ -27,7 +27,7 @@ gs_mmsbm(g, alpha_init, s_alpha_init, a, b, K, n_swap, N, thin, burnin,
 \item{f}{MCMC algo in C++; currently supports rgs_mmsbm()}
 }
 \value{
-a list of data frames and matrices to represent the MCMC output
+a list of data frames and matrices representing the MCMC output
 }
 \description{
 Wrapper of MCMC algorithm for mixed membership stochastic block model (MMSBM)

@@ -9,12 +9,14 @@
 #' @param N,thin,burnin,print_freq MCMC quantities
 #' @param seed random seed to initiate MCMC
 #' @param f MCMC algo in C++; currently supports rgs_mmsbm()
-#' @return a list of data frames and matrices to represent the MCMC output
+#' @return a list of data frames and matrices representing the MCMC output
 #' @importFrom igraph as_adjacency_matrix
 #' @importFrom tibble data_frame
 #' @importFrom dplyr left_join mutate
 #' @importFrom magrittr set_colnames extract2 %>%
 #' @importFrom tidyr unnest
+#' @importFrom Rcpp sourceCpp
+#' @useDynLib mmsbmdag
 #' @export
 gs_mmsbm <- function(g, alpha_init, s_alpha_init, a, b, K, n_swap, N, thin, burnin, print_freq, seed, f) {
     ## wrapper of rgs_mmsbm() & cgs_mmsbm() in C++
