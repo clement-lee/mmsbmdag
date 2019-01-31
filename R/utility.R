@@ -6,12 +6,11 @@
 #' g0 <- igraph::graph_from_data_frame(data.frame(a = c("1", "2"), b = c("2", "3")))
 #' graph_to_nodelist(g0)
 #' @importFrom igraph degree
-#' @importFrom tibble as_tibble
+#' @importFrom tibble tibble
 #' @export
 graph_to_nodelist <- function(g) {
     v <- igraph::degree(g)
-    df0 <- data.frame(id = names(v), value = v, stringAsFactors = FALSE)
-    tibble::as_tibble(df0)
+    tibble::tibble(id = names(v), value = v)
 }
 
 #' Extract edge list of a graph object.
