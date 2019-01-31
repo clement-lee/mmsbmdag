@@ -1,6 +1,6 @@
 Package: mmsbmdag
 Title: Fitting MMSBM to DAGs
-Version: 0.0.1
+Version: 0.0.1.9000
 Authors@R: person("Clement", "Lee", email = "clement.lee@newcastle.ac.uk", role = c("aut", "cre"))
 Description: A suite of functions for applying mixed membership stochastic block model (MMSBM) to directed acyclic graphs (DAG).
 Depends:
@@ -22,7 +22,8 @@ Imports:
     stringr,
     purrr,
     tidyr,
-    Rcpp (>= 1.0.0)
+    Rcpp (>= 1.0.0),
+    visNetwork
 LinkingTo:
     Rcpp,
     RcppArmadillo

@@ -207,3 +207,30 @@ matrix_to_ggs_D <- function(m_D, prefix = "abfx08") {
     df0 %>% coda::mcmc() %>%
         ggmcmc::ggs()
 }
+
+#' Obtain a standardised visNetwork object
+#'
+#' @param df.nodes data frame of nodes
+#' @param df.edges data frame of edges
+#' @param layout string of layout permitted by visNetwork::visIgraphLayout()
+#' @param select_by string of variable to select by
+#' @param seed random initial seed
+#' @param height for height in visNetwork::visNetwork()
+#' @return a visNetwork object
+#' @importFrom visNetwork visNetwork visOptions visEdges visNodes visIgraphLayout
+#' @importFrom magrittr %>%
+#' @export
+vis_object <- function(df.nodes, df.edges, layout = "layout_with_drl", select_by = "group", seed = 1234L, height = "720px") {
+    set.seed(seed)
+    vis0 <- visNetwork::visNetwork(df.nodes, df.edges, width = "100%", height = height) %>%
+        visNetwork::visOptions(highlightNearest = TRUE) %>%
+        visNetwork::visEdges(arrows = "to", color = list(opacity = 0.5)) %>%
+        visNetwork::visNodes(fixed = TRUE) %>%
+        visNetwork::visIgraphLayout(layout = layout)
+    if (select_by != "") {
+        vis0 <- vis0 %>% visNetwork::visOptions(selectedBy = select_by)
+    }
+    vis0
+}
+
+
